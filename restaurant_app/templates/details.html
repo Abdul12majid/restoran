@@ -1,0 +1,32 @@
+{% extends 'base2.html' %}
+
+
+
+
+{% block content %}
+
+<div class="col-xxl-4 col-sm-6 col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Booking Info</div>
+      </div>
+      <div class="card-body">
+        <p>Table Type: {{ get_booking.table }}</p>
+        <p>Date: {{ get_booking.date }}</p>
+        <p>Time: {{ get_booking.time }}</p>
+        <p>Number of guests: {{ get_booking.guests }}</p>
+        <p>Request: {{ get_booking.message }}</p>
+        {% if get_booking.status.name == "Pending" %}
+        <p>Status: <span class="badge shade-blue min-90">Processing</span> </p>
+        {% elif get_booking.status.name == "Approved" %}
+        <p>Status: <span class="badge shade-green min-90">Approved</span> </p>
+         {% elif get_booking.status.name == "Cancelled" %}
+        <p>Status: <span class="badge shade-red min-90">Cancelled</span> 
+          
+        {% endif %}</p>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base2.html' %}
+
+
+{% load static %}
+
+{% block location %}
+Tables
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+	{% for table in all_tables %}
+	<div class="col-md-4">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{ table.table_img.url}}" alt="Card image cap">
+  <div class="card-body">
+  	<p>Name: {{ table.name }}</p>
+  	<p>Available ?: {{ table.is_available }}</p>
+    <p class="card-text">{{ table.description }}.</p>
+  </div>
+</div>
+</div>
+	{% endfor %}
+	</div>
+</div>
+						<!-- Row end -->
+
+{% endblock %}

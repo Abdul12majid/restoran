@@ -1,0 +1,53 @@
+{% extends 'base2.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      
+      <div class="table-responsive">
+        <table class="table v-middle m-0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>No. of guests</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in bookings %}
+            <tr>
+              <td>{{ booking.name }}</td>
+              <td>{{ booking.date }}</td>
+              <td>{{ booking.time }}</td>
+              {% if booking.status.name == "Pending" %}
+                  <td><span class="badge shade-blue min-90">Processing</span></td>
+                  {% elif booking.status.name == "Approved" %}
+                  <td><span class="badge shade-green min-90">Approved</span></td>
+                  {% elif booking.status.name == "Cancelled" %}
+                  <td><span class="badge shade-red min-90">Cancelled</span></td>
+                {% endif %}
+
+                <td>{{ booking.guests }}</td>
+
+                {% if booking.status.name == "Pending" %}
+                <td><a href="{% url 'edit' booking.id %}" class="btn btn-outline-primary btn-sm">Edit</a>&nbsp; <a href="{% url 'cancel' booking.id %}" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                {% elif booking.status.name == "Approved" %}
+                <td><a href="{% url 'details' booking.id %}" class="btn btn-outline-success btn-sm">View</a>&nbsp;</td>
+                {% elif booking.status.name == "Cancelled" %}
+                <td><a class="btn btn-outline-secondary btn-sm">View</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+    <!-- Row end -->
+
+{% endblock %}

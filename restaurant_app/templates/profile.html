@@ -1,0 +1,77 @@
+{% extends 'base2.html' %}
+
+
+{% load static %}
+
+{% block location %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+	
+	<div class="col-sm-12 col-12">
+
+		<!-- Card start -->
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Edit Personal Info</div>
+			</div>
+			<div class="card-body">
+				<form method="POST" action="{% url 'profile' %}" validate>
+					{% csrf_token %}
+
+				<!-- Row start -->
+				<div class="row">
+					<div class="col-xl-3 col-sm-4 col-12">
+						<div class="mb-3">
+							<label for="inputName" class="form-label">First Name</label>
+							<input name="first_name" value="{{ user.username }}" type="text" class="form-control" id="inputName" placeholder="Enter Name">
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-12">
+						<div class="mb-3">
+							<label for="inputName" class="form-label">Last Name</label>
+							<input name="last_name" value="{{ user.last_name }}" type="text" class="form-control" id="inputName" placeholder="Enter Name">
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-12">
+						<div class="mb-3">
+							<label for="inputEmail" class="form-label">Email</label>
+							<input name="email" value="{{ user.email }}" type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-12">
+						<div class="mb-3">
+							<label for="inputNumber" class="form-label">Phone</label>
+							<input name="contact" value="{{ user.profile.contact }}" type="number" class="form-control" id="inputNumber" placeholder="Enter Phone Number">
+						</div>
+					</div>
+					
+					
+				</div>
+				<!-- Row end -->
+
+				<!-- Form actions footer start -->
+				<div class="form-actions-footer">
+					<button class="btn btn-light">Cancel</button>
+					<button type="Submit" class="btn btn-success">Submit</button>
+				</div>
+
+				</form>
+				<!-- Form actions footer end -->
+
+			</div>
+		</div>
+		<!-- Card end -->
+
+	</div>
+
+	</br>
+</div>
+</div>
+						<!-- Row end -->
+
+{% endblock %}
